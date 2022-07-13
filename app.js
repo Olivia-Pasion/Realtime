@@ -1,14 +1,29 @@
-import { getUser, signOut } from './services/auth-service.js';
-import { protectPage } from './utils.js';
+// Utils
+import { protectPage, enforceProfile } from './utils.js';
+
+// Services
+import { getUser, signOut, getProfile } from './services/auth-service.js';
+import { addPost, getAllPosts } from './services/posts-service.js';
+
+// Component constructors
 import createUser from './components/User.js';
+import createAddPost from './components/AddPost.js';
+import createFeed from './components/Feed.js';
 
 // State
 let user = null;
+let profile = null;
+let posts = [];
 
 // Action Handlers
 async function handlePageLoad() {
-    user = getUser();
+    user = await getUser();
     protectPage(user);
+
+    profile = await getProfile();
+    enforceProfile(profile);
+
+    posts = await getAllPosts() ?? [];
 
     display();
 }
@@ -17,15 +32,30 @@ async function handleSignOut() {
     signOut();
 }
 
-// Components 
+async function handleAddPost(text, image) {
+    const post = { user_id: profile.id, text };
+    if (image.size) post.image = image;
+
+    const newPost = await addPost(post, profile);
+    posts.push(newPost);
+
+    display();
+}
+
+// Components
 const User = createUser(
     document.querySelector('#user'),
     { handleSignOut }
 );
+const AddPost = createAddPost(document.querySelector('#post-submit-form'), {
+    handleAddPost
+});
+const Feed = createFeed(document.querySelector('#post-feed'));
 
 function display() {
     User({ user });
-
+    AddPost();
+    Feed({ posts });
 }
 
 handlePageLoad();
