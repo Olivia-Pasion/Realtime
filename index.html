@@ -14,17 +14,35 @@
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/home.css" />
-    <title>Cool Web App</title>
+    <title>Eggstagram</title>
 </head>
 
 <body>
     <header>
         <img src="./assets/html_css_js.png">
-        <h1>Cool Web App</h1>
+        <h1>Eggstagram</h1>
         <div id="user"></div>
+        <div id="user-edit">
+            <a href="./Profile">Edit User Profile</a>
+        </div>
     </header>
 
     <main>
+
+        <section id="post-submit-container">
+            <div>
+                <h2>Post Egg</h2>
+                <form>
+                    <input name="input-text" required>
+                    <input name="input-image" accept="image/*" type="file">
+                    <button class="button-post">Post</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="post-feed-container">
+            <ul id="post-feed"></ul>
+        </section>
 
     </main>
 
