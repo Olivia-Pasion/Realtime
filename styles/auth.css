@@ -1,0 +1,33 @@
+form {
+    width: 325px;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+form h2 {
+    font-size: 1.25em;
+}
+
+form label, form button {
+    margin: 15px 0;
+}
+
+form label {
+    display: grid;
+    gap: 3px;
+    font-family: 'Titillium Web';
+    font-size: .8em;
+}
+
+.change-type {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.error {
+    min-height: 1em;
+    color: red;
+}
