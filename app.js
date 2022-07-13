@@ -37,7 +37,8 @@ async function handleAddPost(text, image) {
     if (image.size) post.image = image;
 
     const newPost = await addPost(post, profile);
-    posts.push(newPost);
+    newPost.profile = profile;
+    posts.unshift(newPost);
 
     display();
 }
