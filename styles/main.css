@@ -11,6 +11,10 @@
     --footer-background: rgb(243, 242, 242);
 }
 
+.avatar-image {
+    border-radius: 50%;
+}
+
 body {
     height: 100%;
     padding-bottom: 30px;
@@ -23,19 +27,35 @@ header {
     position: sticky;
     top: 0;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--header-background);
 }
 
-header img {
+.logo {
     height: 64px;
 }
 
+.header-left {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
 #user {
-    flex-grow: 2;
-    margin-right: 20px;
-    text-align: right;
-    display: grid;
+    display: flex;
+    gap: 10px;
+}
+
+header .avatar-image {
+    height: 48px;
 }
 
 #user a {
@@ -43,11 +63,17 @@ header img {
     color:steelblue;
 }
 
+.stacked {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
 .hidden {
     display: none;
 }
 
-main {
+section {
     height: 100%;
 }
 
@@ -59,5 +85,29 @@ footer {
     padding: 10px;
     display: flex;
     justify-content: flex-end;
-    
+
+}
+
+#post-submit-container {
+    padding-bottom: 15px;
+    display: flex;
+    justify-self: center;
+    background-color: #ffb703ff;
+    border: solid 3px #fb8500ff;
+    text-align: center;
+    font-size: 25px;
+    font-family: Rubik Moonrocks;
+    width: 300px;
+}
+.image-span {
+    height: 100px;
+    padding-top: 10px;
+}
+
+.username-span {
+
+}
+
+li {
+    text-align: center;
 }

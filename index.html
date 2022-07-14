@@ -14,16 +14,23 @@
     <link rel="stylesheet" href="./styles/reset.css" />
     <link rel="stylesheet" href="./styles/main.css" />
     <link rel="stylesheet" href="./styles/home.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Space+Mono&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet">
     <title>Eggstagram</title>
 </head>
 
 <body>
     <header>
-        <img src="./assets/pictures/eggstagram-logo.png">
-        <h1>Eggstagram</h1>
-        <div id="user"></div>
-        <div id="user-edit">
-            <a href="./Profile">Edit User Profile</a>
+        <div class="header-left">
+            <img src="./assets/pictures/eggstagram-logo.png" class="logo">
+            <h1>Eggstagram</h1>
+        </div>
+        <div class="header-right">
+            <div id="user"></div>
         </div>
     </header>
 
@@ -33,7 +40,7 @@
             <div>
                 <h2>Post Egg</h2>
                 <form id="post-submit-form">
-                    <input name="input-text" required>
+                    <input name="input-text" required placeholder="Type comment here">
                     <input name="input-image" accept="image/*" type="file">
                     <button class="button-post">Post</button>
                 </form>
