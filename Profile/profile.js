@@ -33,14 +33,12 @@ async function handleSignOut() {
 }
 
 async function handleUpdateProfile(username, avatarFile) {
-    // TODO: update avatar too
-
     const updatedProfile = {
         id: profile.id,
         username
     };
 
-    profile = await updateProfile(updatedProfile);
+    profile = await updateProfile(updatedProfile, avatarFile);
 
     display();
 }
@@ -48,7 +46,7 @@ async function handleUpdateProfile(username, avatarFile) {
 //DOM
 const User = createUser(document.querySelector('#user'),
     { href: '/', text: 'Go To Feed' },
-    { handleSignOut }   
+    { handleSignOut }
 );
 
 const Profile = createProfile(document.querySelector('#profile-edit-form'), {

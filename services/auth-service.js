@@ -30,9 +30,8 @@ export async function getProfile() {
 
 export async function updateProfile(profile, avatar) {
     if (avatar && avatar.size > 0) {
-        const publicUrl = uploadAvatar(profile, avatar);
-
-
+        const publicUrl = await uploadAvatar(profile, avatar);
+        profile.avatar_url = publicUrl;
     }
 
     const response = await client
@@ -47,9 +46,13 @@ export async function updateProfile(profile, avatar) {
 async function uploadAvatar(profile, imageFile) {
     if (imageFile.size === 0) return null;
 
+    // Super hacky way to get a *probably* unique filename.
+    // Can't call it the same thing without running into cache issues.
+    const name = Math.floor(Math.random() * 1000000);
+
     // Construct filename. Profile id is unique to bucket.
     const ext = imageFile.type.split('/')[1];
-    let filename = `/${profile.id}.${ext}`;
+    let filename = `/${profile.id}/${name}.${ext}`;
 
     // Upload image to bucket
     let response = await client.storage
@@ -67,5 +70,5 @@ async function uploadAvatar(profile, imageFile) {
 
     if (!checkResponse(response)) return null;
 
-    return response.publicUrl;
+    return response.publicURL;
 }
