@@ -79,14 +79,21 @@ async function uploadPhoto(photo, post) {
     return response.publicURL;
 }
 
-export function onPost(listener) {
+export function onPost(insertCallback, updateCallback) {
     client
         .from(POST_TABLE)
         .on('INSERT', async (payload) => {
             const post = payload.new;
             const profile = await getRealtimeProfile(post.user_id);
             post.profile = profile;
-            listener(post);
+            insertCallback(post);
+        })
+        .on('UPDATE', async (payload) => {
+            const post = payload.new;
+            const profile = await getRealtimeProfile(post.user_id);
+            post.profile = profile;
+            updateCallback(post);
+            
         })
         .subscribe();
 }

@@ -25,16 +25,28 @@ async function handlePageLoad() {
 
     posts = await getAllPosts() ?? [];
 
-    onPost(post => {
-        posts.unshift(post);
-        display();
-    });
+    onPost(realtimeAddPost, realtimeUpdatePost);
 
     display();
 }
 
 async function handleSignOut() {
     signOut();
+}
+
+//Realtime function
+
+function realtimeAddPost(post) {
+    posts.unshift(post);
+    display();
+}
+
+function realtimeUpdatePost(updatedPost) {
+    const index = posts.findIndex(x => x.id === updatedPost.id);
+
+    posts.splice(index, 1, updatedPost);
+
+    display();
 }
 
 async function handleAddPost(text, image) {

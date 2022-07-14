@@ -16,7 +16,8 @@ export default function createFeed(ul) {
 
             const image = document.createElement('img');
             li.append(image);
-            image.textContent = post.image;
+            image.src = post.image ?? '';
+
         }
     };
 }

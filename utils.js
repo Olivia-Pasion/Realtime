@@ -24,3 +24,4 @@ export function getAuthRedirect() {
     const redirectUrl = encodeURIComponent(location.href);
     return `/auth/?redirectUrl=${redirectUrl.toString()}`;
 }
+
