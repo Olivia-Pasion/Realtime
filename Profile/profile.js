@@ -15,10 +15,10 @@ let profile = null;
 //handlers
 async function handlePageLoad() {
     user = await getUser();
-    protectPage(user);
+    if (protectPage(user)) return;
 
     profile = await getProfile();
-    
+
     display();
 }
 

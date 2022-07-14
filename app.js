@@ -18,10 +18,10 @@ let posts = [];
 // Action Handlers
 async function handlePageLoad() {
     user = await getUser();
-    protectPage(user);
+    if (protectPage(user)) return;
 
     profile = await getProfile();
-    enforceProfile(profile);
+    if (enforceProfile(profile)) return;
 
     posts = await getAllPosts() ?? [];
 

@@ -1,14 +1,18 @@
 
-export async function protectPage(user) {
+export function protectPage(user) {
     if (!user) {
         location.replace(`/auth/?redirectUrl=${getRedirect()}`);
+        return true;
     }
+    return false;
 }
 
-export async function enforceProfile(profile) {
+export function enforceProfile(profile) {
     if (!profile) {
         location.replace(`/profile/?redirectUrl=${getRedirect()}`);
+        return true;
     }
+    return false;
 }
 
 export function getRedirect() {
