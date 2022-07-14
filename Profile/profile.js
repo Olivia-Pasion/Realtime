@@ -3,14 +3,11 @@ import { protectPage } from '../utils.js';
 import createUser from '../components/User.js';
 
 //Component
-
-import createProfile from './components/Profile.js';
-
+import createProfile from '../components/Profile.js';
 
 //State
 let user = null;
 let profile = null;
-
 
 //handlers
 async function handlePageLoad() {
@@ -19,21 +16,47 @@ async function handlePageLoad() {
 
     profile = await getProfile();
 
+    if (!profile) {
+        const defaultUsername = user.email.split('@')[0];
+
+        profile = await updateProfile({
+            id: user.id,
+            username: defaultUsername
+        });
+    }
+
     display();
 }
 
+async function handleSignOut() {
+    signOut();
+}
 
-async function handleUpdateProfile() {
-    // TODO: implement t
+async function handleUpdateProfile(username, avatarFile) {
+    // TODO: update avatar too
+
+    const updatedProfile = {
+        id: profile.id,
+        username
+    };
+
+    profile = await updateProfile(updatedProfile);
+
+    display();
 }
 
 //DOM
-const Profile = createProfile(document.querySelector('#new-profile'));
+const User = createUser(document.querySelector('#user'), {
+    handleSignOut
+});
 
-
+const Profile = createProfile(document.querySelector('#profile-edit-form'), {
+    handleUpdateProfile
+});
 
 //Display
 function display() {
+    User({ user, profile });
     Profile({ user, profile });
 }
 

@@ -25,6 +25,8 @@ async function handlePageLoad() {
 
     posts = await getAllPosts() ?? [];
 
+    // TODO: add realtime listener on posts table
+
     display();
 }
 
@@ -51,7 +53,7 @@ const AddPost = createAddPost(document.querySelector('#post-submit-form'), {
 const Feed = createFeed(document.querySelector('#post-feed'));
 
 function display() {
-    User({ user });
+    User({ user, profile });
     AddPost();
     Feed({ posts });
 }

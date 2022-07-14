@@ -10,7 +10,7 @@ export default function createProfile(form, { handleUpdateProfile }) {
         preview.src = URL.createObjectURL(file);
     });
 
-    form.addEventListener('submit', async e => {
+    form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         const formData = new FormData(form);
@@ -29,6 +29,5 @@ export default function createProfile(form, { handleUpdateProfile }) {
         else {
             usernameInput.value = user?.email.split('@')[0];
         }
-        
     };
 }

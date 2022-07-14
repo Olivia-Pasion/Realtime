@@ -1,13 +1,12 @@
 import { getAuthRedirect } from '../utils.js';
 export default function createUser(root, { handleSignOut }) {
 
-    return ({ user }) => {
+    return ({ user, profile }) => {
         root.innerHTML = '';
 
         if (user) {
             const nameDisplay = document.createElement('span');
-            const username = user?.email.split('@')[0];
-            nameDisplay.textContent = username;
+            nameDisplay.textContent = profile.username;
 
             const signOutLink = document.createElement('a');
             signOutLink.textContent = 'Sign out';
@@ -27,4 +26,3 @@ export default function createUser(root, { handleSignOut }) {
         }
     };
 }
-
