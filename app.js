@@ -3,7 +3,7 @@ import { protectPage, enforceProfile } from './utils.js';
 
 // Services
 import { getUser, signOut, getProfile } from './services/auth-service.js';
-import { addPost, getAllPosts } from './services/posts-service.js';
+import { addPost, getAllPosts, onPost } from './services/posts-service.js';
 
 // Component constructors
 import createUser from './components/User.js';
@@ -25,7 +25,10 @@ async function handlePageLoad() {
 
     posts = await getAllPosts() ?? [];
 
-    // TODO: add realtime listener on posts table
+    onPost(post => {
+        posts.unshift(post);
+        display();
+    });
 
     display();
 }
@@ -36,9 +39,7 @@ async function handleSignOut() {
 
 async function handleAddPost(text, image) {
     const newPost = await addPost(text, image, profile);
-    newPost.profile = profile;
-    posts.unshift(newPost);
-
+    
     display();
 }
 

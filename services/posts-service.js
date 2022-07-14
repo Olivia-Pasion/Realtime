@@ -2,6 +2,8 @@ import { client, checkResponse } from './client.js';
 
 const POST_TABLE = 'posts';
 
+const users = new Map();
+
 export async function getAllPosts() {
     const response = await client
         .from(POST_TABLE)
@@ -75,4 +77,35 @@ async function uploadPhoto(photo, post) {
     if (!checkResponse(response)) return null;
 
     return response.publicURL;
+}
+
+export function onPost(listener) {
+    client
+        .from(POST_TABLE)
+        .on('INSERT', async (payload) => {
+            const post = payload.new;
+            const profile = await getRealtimeProfile(post.user_id);
+            post.profile = profile;
+            listener(post);
+        })
+        .subscribe();
+}
+
+async function getRealtimeProfile(id) {
+    if (users.has(id)) return users.get(id);
+
+    const { data, error } = await client 
+        .from('profiles')
+        .select('*')
+        .eq('id', id)
+        .single();
+
+    if (error) {
+        console.log(error);
+        return null;
+    }
+
+    users.set(id, data);
+
+    return data;
 }
