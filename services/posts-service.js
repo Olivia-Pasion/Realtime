@@ -54,7 +54,7 @@ export async function addPost(text, image, profile) {
 
 // Uploads a photo used in a post.
 async function uploadPhoto(photo, post) {
-    // Put each user's photos in a separate folder named after there UUID. Filenames are taken from
+    // Put each user's photos in a separate folder named after their UUID. Filenames are taken from
     // the post id to ensure uniqueness
     const ext = photo.type.split('/')[1];
     let imageName = `/${post.user_id}/${post.id}.${ext}`;
@@ -93,7 +93,7 @@ export function onPost(insertCallback, updateCallback) {
             const profile = await getRealtimeProfile(post.user_id);
             post.profile = profile;
             updateCallback(post);
-            
+
         })
         .subscribe();
 }
@@ -101,7 +101,7 @@ export function onPost(insertCallback, updateCallback) {
 async function getRealtimeProfile(id) {
     if (users.has(id)) return users.get(id);
 
-    const { data, error } = await client 
+    const { data, error } = await client
         .from('profiles')
         .select('*')
         .eq('id', id)
