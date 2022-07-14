@@ -28,7 +28,13 @@ export async function getProfile() {
     return rows[0] || null;
 }
 
-export async function updateProfile(profile) {
+export async function updateProfile(profile, avatar) {
+    if (avatar && avatar.size > 0) {
+        const publicUrl = uploadAvatar(profile, avatar);
+
+
+    }
+
     const response = await client
         .from('profiles')
         .upsert(profile)
@@ -36,4 +42,30 @@ export async function updateProfile(profile) {
         .single();
 
     return checkResponse(response);
+}
+
+async function uploadAvatar(profile, imageFile) {
+    if (imageFile.size === 0) return null;
+
+    // Construct filename. Profile id is unique to bucket.
+    const ext = imageFile.type.split('/')[1];
+    let filename = `/${profile.id}.${ext}`;
+
+    // Upload image to bucket
+    let response = await client.storage
+        .from('avatars')
+        .upload(filename, imageFile, {
+            cacheControl: '3600',
+            upsert: true
+        });
+
+    if (!checkResponse(response)) return null;
+
+    response = client.storage
+        .from('avatars')
+        .getPublicUrl(filename);
+
+    if (!checkResponse(response)) return null;
+
+    return response.publicUrl;
 }

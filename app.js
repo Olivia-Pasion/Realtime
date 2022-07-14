@@ -15,6 +15,8 @@ let user = null;
 let profile = null;
 let posts = [];
 
+// const sound = document.getElementById('chicken-sound');
+
 // Action Handlers
 async function handlePageLoad() {
     user = await getUser();
@@ -50,7 +52,6 @@ function realtimeUpdatePost(updatedPost) {
 }
 
 async function handleAddPost(text, image) {
-    // const newPost = 
     await addPost(text, image, profile);
     
     display();

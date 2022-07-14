@@ -23,15 +23,14 @@ main {
 #post-feed-container {
     background-color: var(--tangerine);
     display: block;
-    box-shadow: 10px 7px 17px rgba(0, 0, 0, 0.369);
+    box-shadow: 10px 7px 17px rgba(0, 0, 0, 0.369), 10px 7px 17px rgba(0, 0, 0, 0.369);
 
     padding: 40px;
     border: 15px solid;
     border-radius: 100px;
     border-color: var(--ivory);
     margin: 30px;
-
-    
+  
 
 }
 
@@ -43,9 +42,7 @@ main {
     display: flex;
     flex-direction: column;
 
-
 }
-
 
 
 #post-feed li {
@@ -67,7 +64,6 @@ main {
     justify-content: center;
     justify-items: center;
     align-items: center;
-
 
 }
 
