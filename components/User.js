@@ -1,7 +1,11 @@
 import { getAuthRedirect } from '../utils.js';
 
-export default function createUser(root, { handleSignOut }) {
-    return ({ user, profile }) => {
+export default function createUser(root, contextLink, { handleSignOut }) {
+    const { href: linkHref, text: linkText } = contextLink;
+
+    return ({ user, profile, showContextLink }) => {
+        showContextLink = showContextLink ?? true;
+
         root.innerHTML = '';
 
         if (user) {
@@ -9,9 +13,13 @@ export default function createUser(root, { handleSignOut }) {
             avatarDisplay.src = profile.avatar_url;
             avatarDisplay.alt = `${profile.username}'s avatar image`;
             avatarDisplay.classList.add('avatar-image');
+            
+            const textContainer = document.createElement('div');
+            textContainer.classList.add('stacked');
 
             const nameDisplay = document.createElement('span');
             nameDisplay.textContent = profile.username;
+            textContainer.append(nameDisplay);
 
             const signOutLink = document.createElement('a');
             signOutLink.textContent = 'Sign out';
@@ -19,15 +27,15 @@ export default function createUser(root, { handleSignOut }) {
             signOutLink.addEventListener('click', () => {
                 handleSignOut();
             });
-
-            const editProfileLink = document.createElement('a');
-            editProfileLink.textContent = 'Edit Profile';
-            editProfileLink.href = './Profile';
-
-            const textContainer = document.createElement('div');
-            textContainer.classList.add('stacked');
-
-            textContainer.append(nameDisplay, signOutLink, editProfileLink);
+            textContainer.append(signOutLink);
+            
+            if (showContextLink) {
+                const contextLink = document.createElement('a');
+                contextLink.textContent = linkText;
+                contextLink.href = linkHref;
+                textContainer.append(contextLink);
+            }
+            
             root.append(avatarDisplay, textContainer);
         }
         else {

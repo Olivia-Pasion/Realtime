@@ -57,8 +57,8 @@ async function handleAddPost(text, image) {
 }
 
 // Components
-const User = createUser(
-    document.querySelector('#user'),
+const User = createUser(document.querySelector('#user'),
+    { href: '/Profile', text: 'Edit Profile' },
     { handleSignOut }
 );
 const AddPost = createAddPost(document.querySelector('#post-submit-form'), {

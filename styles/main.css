@@ -21,6 +21,8 @@ body {
     font-family: 'Rubik', san-serif;
     background: var(--background);
     background-image: url(../assets/pictures/a-basket-of-eggs.jpg);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 header {
@@ -92,22 +94,36 @@ footer {
     padding-bottom: 15px;
     display: flex;
     justify-self: center;
-    background-color: #ffb703ff;
-    border: solid 3px #fb8500ff;
+    background-color: rgba(255, 184, 3, 0.836);
+    border: solid 4px rgba(251, 134, 0, 0.815);
     text-align: center;
     font-size: 25px;
     font-family: Rubik Moonrocks;
-    width: 300px;
+    margin: 20px 30px;
 }
 .image-span {
+    grid-area: image;
     height: 100px;
     padding-top: 10px;
 }
 
 .username-span {
+    grid-area: username;
+    font-size: 25px;
+    font-weight: 800;
+    border-bottom: solid 2px black;
+    font-family: Mansalva;
 
+}
+
+.text-span {
+    grid-area: text;
 }
 
 li {
     text-align: center;
+}
+
+button .button-post {
+    background: url(./assets/pictures/Egg-Transparent.png);
 }

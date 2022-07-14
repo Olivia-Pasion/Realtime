@@ -11,7 +11,7 @@
 /* Main page layout */
 
 main {
-    max-width: 450px;
+    max-width: 550px;
     margin: auto;
 }
 
@@ -19,18 +19,19 @@ main {
 
 /* Sections */
 
-#post-submit-container {
-    /* position: fixed; */
-}
 
 #post-feed-container {
     background-color: var(--tangerine);
     display: block;
+    box-shadow: 10px 7px 17px rgba(0, 0, 0, 0.369);
 
     padding: 40px;
     border: 15px solid;
+    border-radius: 100px;
     border-color: var(--ivory);
     margin: 30px;
+
+    
 
 }
 
@@ -45,8 +46,14 @@ main {
 
 }
 
+
+
 #post-feed li {
     background-color: var(--selective-yellow);
+    box-shadow: 10px 7px 5px rgb(203, 108, 0);
+
+
+    border-radius: 100px;
     padding: 60px;
     margin: 40px;
 
@@ -54,10 +61,13 @@ main {
     grid-template-columns: 1fr;
     grid-template-rows: 25% 25% 50%;
     grid-template-areas:
-        "username-span"
-        "text-span"
-        "image-span";
+        "username"
+        "text"
+        "image";
+    justify-content: center;
+    justify-items: center;
     align-items: center;
+
 
 }
 

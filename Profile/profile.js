@@ -46,9 +46,10 @@ async function handleUpdateProfile(username, avatarFile) {
 }
 
 //DOM
-const User = createUser(document.querySelector('#user'), {
-    handleSignOut
-});
+const User = createUser(document.querySelector('#user'),
+    { href: '/', text: 'Go To Feed' },
+    { handleSignOut }   
+);
 
 const Profile = createProfile(document.querySelector('#profile-edit-form'), {
     handleUpdateProfile
