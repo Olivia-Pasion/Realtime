@@ -15,7 +15,7 @@ let user = null;
 let profile = null;
 let posts = [];
 
-// const sound = document.getElementById('chicken-sound');
+const sound = document.getElementById('chicken-sound');
 
 // Action Handlers
 async function handlePageLoad() {
@@ -53,7 +53,7 @@ function realtimeUpdatePost(updatedPost) {
 
 async function handleAddPost(text, image) {
     await addPost(text, image, profile);
-    
+    sound.play();
     display();
 }
 
