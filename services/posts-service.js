@@ -16,46 +16,48 @@ export async function getAllPosts() {
     return checkResponse(response);
 }
 
-export async function addPost(post, profile) {
-    // If there's an image, hold off on inserting it into database
-    const image = post.image;
-    if (image && image.size) delete post.image;
+export async function addPost(text, image, profile) {
+    let post = {
+        text: text,
+        user_id: profile.id
+    };
 
-    // Associate user w/ post
-    post.user_id = profile.id;
-
+    // First insert a post w/o image.
     let response = await client
         .from(POST_TABLE)
         .insert(post)
         .single();
+    post = checkResponse(response);
 
-    const newPost = checkResponse(response);
-    
-    // If we have an image, upload it and use the post id as a unique
-    // identifier for naming.
     if (image && image.size) {
-        const imageUrl = await uploadPhoto(image, profile, newPost.id);
+        // If we have an image, upload it and use the new post id as the filename to ensure uniqueness.
+        const imageUrl = await uploadPhoto(image, post);
 
+        // Update the post with the imageUrl
         response = await client
             .from(POST_TABLE)
             .update({
                 image: imageUrl
             })
-            .match({
-                id: newPost.id
-            })
+            .eq('id', post.id)
             .single();
 
+        // Return the updated post w/ image column filled in.
         return checkResponse(response);
     }
 
-    return newPost;
+    // This post doesn't have an image, so return the original post.
+    return post;
 }
 
-async function uploadPhoto(photo, profile, postId) {
+// Uploads a photo used in a post.
+async function uploadPhoto(photo, post) {
+    // Put each user's photos in a separate folder named after there UUID. Filenames are taken from
+    // the post id to ensure uniqueness
     const ext = photo.type.split('/')[1];
-    let imageName = `/${profile.id}/${postId}.${ext}`;
+    let imageName = `/${post.user_id}/${post.id}.${ext}`;
 
+    // Upload photo
     let response = await client.storage
         .from('images')
         .upload(imageName, photo, {
@@ -65,6 +67,7 @@ async function uploadPhoto(photo, profile, postId) {
 
     if (!checkResponse(response)) return null;
 
+    // Get public url of uploaded photo
     response = client.storage
         .from('images')
         .getPublicUrl(imageName);

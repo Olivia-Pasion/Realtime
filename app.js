@@ -33,10 +33,7 @@ async function handleSignOut() {
 }
 
 async function handleAddPost(text, image) {
-    const post = { user_id: profile.id, text };
-    if (image.size) post.image = image;
-
-    const newPost = await addPost(post, profile);
+    const newPost = await addPost(text, image, profile);
     newPost.profile = profile;
     posts.unshift(newPost);
 
