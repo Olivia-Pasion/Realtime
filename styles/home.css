@@ -1,0 +1,49 @@
+/*Style choices*/
+
+*{
+    --selective-yellow: #ffb703ff;
+    --tangerine: #fb8500ff;
+    --cornsilk: #fefae0ff;
+    --ivory: #f8f6e7;
+}
+/*Style choices END*/
+
+/* Main page layout */
+
+main {
+    max-width: 450px;
+    margin: auto;
+}
+
+/* Main page END */
+
+/* Sections */
+
+#post-submit-container {
+    /* position: fixed; */
+}
+
+#post-feed-container {
+    background-color: var(--tangerine);
+
+}
+
+/* Sections END*/
+
+/* FEED */
+
+#post-feed {
+    display: flex;
+    flex-direction: column;
+    
+    
+}
+
+#post-feed li {
+    background-color: var(--selective-yellow);
+    display: grid;
+    grid-template-columns: 1fr;
+    
+}
+
+/* FEED END*/

@@ -1,3 +1,10 @@
+*{
+    --selective-yellow: #ffb703ff;
+    --tangerine: #fb8500ff;
+    --cornsilk: #fefae0ff;
+    --ivory: #f8f6e7;
+}
+
 :root {
     --background: rgb(224, 234, 247);
     --header-background: white;
@@ -9,6 +16,7 @@ body {
     padding-bottom: 30px;
     font-family: 'Rubik', san-serif;
     background: var(--background);
+    background-image: url(../assets/pictures/a-basket-of-eggs.jpg);
 }
 
 header {
@@ -17,6 +25,10 @@ header {
     display: flex;
     align-items: center;
     background-color: var(--header-background);
+}
+
+header img {
+    height: 64px;
 }
 
 #user {
@@ -47,5 +59,5 @@ footer {
     padding: 10px;
     display: flex;
     justify-content: flex-end;
-    background-color: var(--footer-background);
+    
 }
