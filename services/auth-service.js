@@ -27,3 +27,13 @@ export async function getProfile() {
     const rows = checkResponse(response);
     return rows[0] || null;
 }
+
+export async function updateProfile(profile) {
+    const response = await client
+        .from('profiles')
+        .upsert(profile)
+        .eq('id', profile.id)
+        .single();
+
+    return checkResponse(response);
+}
