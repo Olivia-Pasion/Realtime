@@ -13,6 +13,10 @@ export default function createFeed(ul) {
             const contentSpan = document.createElement('span');
             li.append(contentSpan);
             contentSpan.textContent = post.text;
+
+            const image = document.createElement('img');
+            li.append(image);
+            image.textContent = post.image;
         }
     };
 }

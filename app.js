@@ -38,7 +38,8 @@ async function handleSignOut() {
 }
 
 async function handleAddPost(text, image) {
-    const newPost = await addPost(text, image, profile);
+    // const newPost = 
+    await addPost(text, image, profile);
     
     display();
 }
