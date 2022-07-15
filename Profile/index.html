@@ -14,6 +14,15 @@
     <link rel="stylesheet" href="../styles/reset.css" />
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/profile.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mansalva&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Space+Mono&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Moonrocks&display=swap" rel="stylesheet">
     <title>Eggstagram</title>
 </head>
 
@@ -29,18 +38,23 @@
     </header>
 
     <main>
-        <form id="profile-edit-form">
-            <label>
-                Username
-                <input name="input-username" required>
-            </label>
-            <label>
-                Avatar Image
-                <input name="input-avatar" type="file" accept="image/*">
-            </label>
-            <button>Update</button>
-            <img src="">
-        </form>
+        <section id="profile-edit-form-container">
+            <div>
+                <h2>Your Profile</h2>
+                <form id="profile-edit-form">
+                    <label>
+                        Username
+                        <input name="input-username" required>
+                    </label>
+                    <label>
+                        Avatar Image
+                        <input name="input-avatar" type="file" accept="image/*">
+                    </label>
+                    <button>Update</button>
+                    <img src="">
+                </form>
+            </div>
+        </section>
     </main>
 
     <footer>&copy;2022 Aspiring Software Developer</footer>
