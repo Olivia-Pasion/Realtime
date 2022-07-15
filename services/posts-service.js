@@ -108,6 +108,7 @@ async function getRealtimeProfile(id) {
         .single();
 
     if (error) {
+        // eslint-disable-next-line no-console
         console.log(error);
         return null;
     }
