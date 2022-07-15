@@ -8,15 +8,6 @@
 }
 /*Style choices END*/
 
-/* Main page layout */
-
-main {
-    max-width: 550px;
-    margin: auto;
-}
-
-/* Main page END */
-
 /* Sections */
 
 
@@ -30,8 +21,6 @@ main {
     border-radius: 100px;
     border-color: var(--ivory);
     margin: 30px;
-  
-
 }
 
 /* Sections END*/
@@ -44,27 +33,49 @@ main {
 
 }
 
+#post-feed img.avatar-image {
+    width: 100px;
+    grid-area: "avatar";
+}
+
+.image-span {
+    grid-area: image;
+    height: 200px;
+    padding-top: 10px;
+}
+
+.username-span {
+    grid-area: username;
+    font-size: 25px;
+    font-weight: 800;
+    border-bottom: solid 2px black;
+    font-family: Mansalva, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.text-span {
+    grid-area: text;
+    overflow-wrap: break-word;
+}
 
 #post-feed li {
     background-color: var(--selective-yellow);
     box-shadow: 10px 7px 5px rgb(203, 108, 0);
 
-
     border-radius: 100px;
-    padding: 60px;
+    padding: 30px;
     margin: 40px;
 
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 25% 25% 50%;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content min-content min-content;
     grid-template-areas:
-        "username"
-        "text"
-        "image";
-    justify-content: center;
-    justify-items: center;
+        "avatar username"
+        ". text"
+        ". image";
+    column-gap: 15px;
+    justify-content: start;
+    justify-items: start;
     align-items: center;
-
 }
 
 

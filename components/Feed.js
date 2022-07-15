@@ -6,6 +6,11 @@ export default function createFeed(ul) {
             const li = document.createElement('li');
             ul.append(li);
 
+            const avatarImage = document.createElement('img');
+            avatarImage.classList.add('avatar-image');
+            li.append(avatarImage);
+            avatarImage.src = post.profile.avatar_url;
+
             const usernameSpan = document.createElement('span');
             li.append(usernameSpan);
             usernameSpan.classList.add('username-span');
@@ -16,11 +21,12 @@ export default function createFeed(ul) {
             contentSpan.classList.add('text-span');
             contentSpan.textContent = post.text;
 
-            const image = document.createElement('img');
-            image.classList.add('image-span');
-            li.append(image);
-            image.src = post.image ?? '';
-
+            if (post.image) {
+                const image = document.createElement('img');
+                image.classList.add('image-span');
+                li.append(image);
+                image.src = post.image ?? '';
+            }
         }
     };
 }

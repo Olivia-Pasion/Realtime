@@ -1,8 +1,3 @@
-main {
-    max-width: 550px;
-    margin: auto;
-}
-
 #profile-edit-form {
     background-color: var(--selective-yellow);
     border: 5px solid var(--tangerine);

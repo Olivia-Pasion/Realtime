@@ -80,6 +80,11 @@ header .avatar-image {
     display: none;
 }
 
+main {
+    max-width: 800px;
+    margin: auto;
+}
+
 section {
     height: 100%;
 }
@@ -123,24 +128,7 @@ footer {
 }
 
 
-.image-span {
-    grid-area: image;
-    height: 100px;
-    padding-top: 10px;
-}
 
-.username-span {
-    grid-area: username;
-    font-size: 25px;
-    font-weight: 800;
-    border-bottom: solid 2px black;
-    font-family: Mansalva, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
-}
-
-.text-span {
-    grid-area: text;
-}
 
 li {
     text-align: center;
