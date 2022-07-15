@@ -4,7 +4,7 @@ const POST_TABLE = 'posts';
 
 const users = new Map();
 
-export async function getAllPosts() {
+export async function getPosts(number, offset = 0) {
     const response = await client
         .from(POST_TABLE)
         .select(`
@@ -12,7 +12,7 @@ export async function getAllPosts() {
             profile: profiles(*)
         `)
         .order('created_at', { ascending: false })
-        .limit(100);
+        .range(offset, offset + number - 1);
 
 
     return checkResponse(response);

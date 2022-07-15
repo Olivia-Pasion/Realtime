@@ -3,7 +3,7 @@ import { protectPage, enforceProfile } from './utils.js';
 
 // Services
 import { getUser, signOut, getProfile } from './services/auth-service.js';
-import { addPost, getAllPosts, onPost } from './services/posts-service.js';
+import { addPost, getPosts, onPost } from './services/posts-service.js';
 
 // Component constructors
 import createUser from './components/User.js';
@@ -14,6 +14,12 @@ import createFeed from './components/Feed.js';
 let user = null;
 let profile = null;
 let posts = [];
+
+// Post are loaded in chunks according to this size. When the last post is scrolled onto the screen,
+// another chunk is loaded and displayed.
+const postsChunkSize = 10;
+let postOffset = 0;
+let allPostsLoaded = false;
 
 const sound = document.getElementById('chicken-sound');
 sound.volume = 0.1;
@@ -26,7 +32,8 @@ async function handlePageLoad() {
     profile = await getProfile();
     if (enforceProfile(profile)) return;
 
-    posts = await getAllPosts() ?? [];
+    posts = await getPosts(postsChunkSize) ?? [];
+    postOffset += posts.length;
 
     onPost(realtimeAddPost, realtimeUpdatePost);
 
@@ -41,6 +48,7 @@ async function handleSignOut() {
 
 function realtimeAddPost(post) {
     posts.unshift(post);
+    postOffset += 1;
     display();
 }
 
@@ -58,6 +66,18 @@ async function handleAddPost(text, image) {
     display();
 }
 
+async function handleLastPostVisibility(event) {
+    if (event.isIntersecting && !allPostsLoaded) {
+        const newPosts = await getPosts(postsChunkSize, postOffset);
+        allPostsLoaded = newPosts.length < postsChunkSize;
+        postOffset += newPosts.length;
+
+        posts = posts.concat(newPosts);
+
+        display();
+    }
+}
+
 // Components
 const User = createUser(document.querySelector('#user'),
     { href: '/Profile', text: 'Edit Profile' },
@@ -66,7 +86,9 @@ const User = createUser(document.querySelector('#user'),
 const AddPost = createAddPost(document.querySelector('#post-submit-form'), {
     handleAddPost
 });
-const Feed = createFeed(document.querySelector('#post-feed'));
+const Feed = createFeed(document.querySelector('#post-feed'), {
+    handleLastPostVisibility
+});
 
 function display() {
     User({ user, profile });
