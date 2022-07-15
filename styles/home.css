@@ -67,7 +67,7 @@
 #post-feed {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 40px;
 }
 
 #post-feed img.avatar-image {
