@@ -16,6 +16,7 @@ let profile = null;
 let posts = [];
 
 const sound = document.getElementById('chicken-sound');
+sound.volume = 0.1;
 
 // Action Handlers
 async function handlePageLoad() {
