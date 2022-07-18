@@ -1,14 +1,34 @@
-import { getUser, signOut } from './services/auth-service.js';
-import { protectPage } from './utils.js';
+// Utils
+import { protectPage, enforceProfile } from './utils.js';
+
+// Services
+import { getUser, signOut, getProfile } from './services/auth-service.js';
+import { addPost, getAllPosts, onPost } from './services/posts-service.js';
+
+// Component constructors
 import createUser from './components/User.js';
+import createAddPost from './components/AddPost.js';
+import createFeed from './components/Feed.js';
 
 // State
 let user = null;
+let profile = null;
+let posts = [];
+
+const sound = document.getElementById('chicken-sound');
+sound.volume = 0.1;
 
 // Action Handlers
 async function handlePageLoad() {
-    user = getUser();
-    protectPage(user);
+    user = await getUser();
+    if (protectPage(user)) return;
+
+    profile = await getProfile();
+    if (enforceProfile(profile)) return;
+
+    posts = await getAllPosts() ?? [];
+
+    onPost(realtimeAddPost, realtimeUpdatePost);
 
     display();
 }
@@ -17,15 +37,41 @@ async function handleSignOut() {
     signOut();
 }
 
-// Components 
-const User = createUser(
-    document.querySelector('#user'),
+//Realtime function
+
+function realtimeAddPost(post) {
+    posts.unshift(post);
+    display();
+}
+
+function realtimeUpdatePost(updatedPost) {
+    const index = posts.findIndex(x => x.id === updatedPost.id);
+
+    posts.splice(index, 1, updatedPost);
+
+    display();
+}
+
+async function handleAddPost(text, image) {
+    await addPost(text, image, profile);
+    sound.play();
+    display();
+}
+
+// Components
+const User = createUser(document.querySelector('#user'),
+    { href: '/Profile', text: 'Edit Profile' },
     { handleSignOut }
 );
+const AddPost = createAddPost(document.querySelector('#post-submit-form'), {
+    handleAddPost
+});
+const Feed = createFeed(document.querySelector('#post-feed'));
 
 function display() {
-    User({ user });
-
+    User({ user, profile });
+    AddPost();
+    Feed({ posts });
 }
 
 handlePageLoad();

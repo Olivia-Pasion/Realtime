@@ -1,0 +1,121 @@
+/* Style choices*/
+*{
+    --selective-yellow: #ffb703ff;
+    --tangerine: #fb8500ff;
+    --cornsilk: #fefae0ff;
+    --ivory: #f8f6e7;
+}
+/* Style choices END*/
+
+/* NEW POST FORM */
+#post-submit-container {
+    min-width: max-content;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 25px 25px;
+    background-color: rgba(255, 184, 3, 0.836);
+    border: solid 15px rgba(251, 134, 0, 0.815);
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-family: Rubik Moonrocks, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-shadow: 10px 7px 17px rgba(0, 0, 0, 0.369), 10px 7px 17px rgba(0, 0, 0, 0.369);
+}
+
+#post-submit-container h2 {
+    font-size: min(60px, 10vw);
+    margin: 0;
+    margin-bottom: 40px;
+}
+
+#post-submit-container input {
+    padding: 10px;
+    border: 0;
+    border-radius: 100px;
+}
+
+#post-submit-container button.button-post {
+    padding: 15px;
+    border: 0;
+    border-radius: 100px;
+}
+
+#post-submit-form {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+#post-submit-form > button {
+    align-self: flex-end;
+    min-width: 100px;
+}
+
+/* NEW POST FORM END */
+
+/* FEED */
+#post-feed-container {
+    background-color: var(--tangerine);
+    box-shadow: 10px 7px 17px rgba(0, 0, 0, 0.369), 10px 7px 17px rgba(0, 0, 0, 0.369);
+
+    padding: 10px 10px;
+    border: 15px solid;
+    border-radius: 50px;
+    border-color: var(--ivory);
+}
+
+#post-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+#post-feed img.avatar-image {
+    height: max(16px, min(100px, 10vw));
+    width: max(16px, min(100px, 10vw));
+    grid-area: "avatar";
+}
+
+.image-span {
+    grid-area: image;
+    width: 100%;
+    max-height: 200px;
+    object-fit: contain;
+    object-position: left;
+    padding-top: 10px;
+}
+
+.username-span {
+    grid-area: username;
+    font-size: 25px;
+    font-weight: 800;
+    border-bottom: solid 2px black;
+    font-family: Mansalva, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.text-span {
+    grid-area: text;
+    overflow-wrap: break-word;
+}
+
+#post-feed li {
+    background-color: var(--selective-yellow);
+    box-shadow: 10px 7px 5px rgb(203, 108, 0);
+
+    border-radius: 26px;
+    padding: 30px;
+    /* margin: 10px 0; */
+
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    grid-template-rows: min-content min-content min-content;
+    grid-template-areas:
+        "avatar username"
+        "avatar text"
+        "avatar image";
+    column-gap: 15px;
+    justify-content: start;
+    justify-items: start;
+    align-items: center;
+}
+/* FEED END*/

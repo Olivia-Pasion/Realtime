@@ -1,7 +1,19 @@
+*{
+    --selective-yellow: #ffb703ff;
+    --tangerine: #fb8500ff;
+    --cornsilk: #fefae0ff;
+    --ivory: #f8f6e7;
+}
+
 :root {
     --background: rgb(224, 234, 247);
     --header-background: white;
     --footer-background: rgb(243, 242, 242);
+}
+
+.avatar-image {
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 body {
@@ -9,21 +21,49 @@ body {
     padding-bottom: 30px;
     font-family: 'Rubik', san-serif;
     background: var(--background);
+    background-image: url(../assets/pictures/a-basket-of-eggs.jpg);
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 header {
+    padding: 10px;
     position: sticky;
     top: 0;
     display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
     align-items: center;
     background-color: var(--header-background);
 }
 
+h1 {
+    font-family: Rubik Moonrocks, 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.logo {
+    height: 64px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
 #user {
-    flex-grow: 2;
-    margin-right: 20px;
-    text-align: right;
-    display: grid;
+    display: flex;
+    gap: 10px;
+}
+
+header .avatar-image {
+    width: 48px;
+    height: 48px;
 }
 
 #user a {
@@ -31,11 +71,23 @@ header {
     color:steelblue;
 }
 
+.stacked {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
 .hidden {
     display: none;
 }
 
 main {
+    max-width: 800px;
+    margin: auto;
+    padding: 0 10px;
+}
+
+section {
     height: 100%;
 }
 
@@ -47,5 +99,4 @@ footer {
     padding: 10px;
     display: flex;
     justify-content: flex-end;
-    background-color: var(--footer-background);
 }

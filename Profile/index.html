@@ -5,15 +5,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <link rel="icon" type="image/x-icon" href="./assets/pictures/eggstagram-favicon.png" />
+    <link rel="icon" type="image/x-icon" href="../assets/pictures/eggstagram-favicon.png" />
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
-    <link rel="stylesheet" href="./styles/reset.css" />
-    <link rel="stylesheet" href="./styles/main.css" />
-    <link rel="stylesheet" href="./styles/home.css" />
+    <link rel="stylesheet" href="../styles/reset.css" />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/profile.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,7 +29,7 @@
 <body>
     <header>
         <div class="header-left">
-            <img src="./assets/pictures/eggstagram-logo.png" class="logo">
+            <img src="../assets/pictures/eggstagram-logo.png" class="logo">
             <h1>Eggstagram</h1>
         </div>
         <div class="header-right">
@@ -38,28 +38,28 @@
     </header>
 
     <main>
-
-        <section id="post-submit-container">
+        <section id="profile-edit-form-container">
             <div>
-                <h2>Post Egg</h2>
-                <form id="post-submit-form">
-                    <input name="input-text" required placeholder="Type comment here">
-                    <input name="input-image" accept="image/*" type="file">
-                    <button class="button-post">Post</button>
+                <h2>Your Profile</h2>
+                <form id="profile-edit-form">
+                    <label>
+                        Username
+                        <input name="input-username" required>
+                    </label>
+                    <label>
+                        Avatar Image
+                        <input name="input-avatar" type="file" accept="image/*">
+                    </label>
+                    <img id="avatar-preview" class="avatar-image" src="">
+                    <button>Update</button>
                 </form>
-                <audio id="chicken-sound" src="./assets/pictures/chicken-single-alarm-call-6056.mp3" preload="auto"></audio>
             </div>
         </section>
-
-        <section id="post-feed-container">
-            <ul id="post-feed"></ul>
-        </section>
-
     </main>
 
     <footer>&copy;2022 Aspiring Software Developer</footer>
 
-    <script type="module" src="app.js"></script>
+    <script type="module" src="profile.js"></script>
 </body>
 
 </html>
